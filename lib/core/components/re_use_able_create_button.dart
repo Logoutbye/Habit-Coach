@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:healthy_routine/core/app_colors.dart';
 import 'package:healthy_routine/core/app_styles.dart';
 
 class ReUseAbleCreateButton extends StatelessWidget {
@@ -20,9 +21,9 @@ class ReUseAbleCreateButton extends StatelessWidget {
       child: Container(
         height: MediaQuery.of(context).size.height / 15,
         decoration: ShapeDecoration(
-          color: const Color(0xFF7FD8D8),
+          color: AppColors.kprimaryColor,
           shape: RoundedRectangleBorder(
-            side: const BorderSide(width: 1, color: Color(0xFF7FD8D8)),
+            side: const BorderSide(width: 1, color: AppColors.kprimaryColor),
             borderRadius: BorderRadius.circular(10),
           ),
           shadows: const [

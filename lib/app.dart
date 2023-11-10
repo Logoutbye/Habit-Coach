@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:healthy_routine/core/routings/routes.dart';
-import 'package:healthy_routine/view/state/onboarding_screen_state.dart';
-import 'package:healthy_routine/view/state/task_provider.dart';
-import 'package:healthy_routine/view/state/timer_provider.dart';
+import 'package:healthy_routine/models/routine.dart';
+import 'package:healthy_routine/state/onboarding_screen__indicator_provider.dart';
+import 'package:healthy_routine/controllers/get_schedule_provider.dart';
+import 'package:healthy_routine/state/selected_day_provider.dart';
+import 'package:healthy_routine/state/task_provider.dart';
+import 'package:healthy_routine/state/timer_provider.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
 import 'core/app_strings.dart';
 import 'core/routings/routes_name.dart';
-import 'view/state/drop_down_provider.dart';
-import 'view/state/toggle_provider.dart';
+import 'state/create_fixed_routine_indicator_provider.dart';
+import 'state/drop_down_provider.dart';
+import 'state/toggle_provider.dart';
+
+final navigatorKey = GlobalKey<NavigatorState>();
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -16,7 +23,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (context) => OnBoardingScreenState(),
+          create: (context) => OnBoardingScreenIndicatorProvider(),
         ),
         ChangeNotifierProvider(
           create: (context) => SwitchProvider(),
@@ -25,20 +32,28 @@ class MyApp extends StatelessWidget {
           create: (context) => TimeProvider(),
         ),
         ChangeNotifierProvider(
-          create: (context) => CreateFixedScreenState(),
+          create: (context) => CreateFixedScreenIndicatorProvider(),
         ),
         ChangeNotifierProvider(
-          create: (context) => TaskProvider(),
+          create: (context) => TodoProvider(),
         ),
         ChangeNotifierProvider(
           create: (context) => DropdownProvider(),
         ),
+        ChangeNotifierProvider(
+          create: (context) => ScheduleProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => SelectedDaysProvider(),
+        ),
       ],
       child: MaterialApp(
+        navigatorKey: navigatorKey,
         debugShowCheckedModeBanner: false,
         title: AppStrings.appName,
         theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF7FD8D8)),
+          fontFamily: 'Nunito',
+          colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF495CC5)),
           useMaterial3: true,
         ),
         initialRoute: RoutesName.splash,
@@ -46,4 +61,13 @@ class MyApp extends StatelessWidget {
       ),
     );
   }
+}
+
+initilizedApp() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
+  Hive.registerAdapter(RoutineAdapter());
+  Hive.registerAdapter(TodoAdapter());
+
+  await Hive.openBox<Routine>(AppStrings.routineHiveBox);
 }

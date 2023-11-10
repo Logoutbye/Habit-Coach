@@ -1,7 +1,6 @@
 class AppStrings {
   static const appName = 'Healthy Routine';
-  static const appIcon = 'assets/images/icon.png';
-  static const letsstart = 'assets/images/letsstart.png';
+  // static const letsstart = 'assets/images/letsstart.png';
   static const splashpath1 = 'assets/images/splashpath1.jpg';
   static const splashpath2 = 'assets/images/splashpath2.jpg';
   static const splashpath3 = 'assets/images/splashpath3.jpg';
@@ -28,4 +27,14 @@ class AppStrings {
   static const digitalSvgPath = 'assets/svg/digital.svg';
   static const prebedSvgPath = 'assets/svg/prebed.svg';
   static const sleepSvgPath = 'assets/svg/sleep.svg';
+  static const splashScreenPath = 'assets/svg/splash_screen.svg';
+
+
+
+  static const animationPath = 'assets/animation.json';
+
+
+  //Hive Boxes
+     static const routineHiveBox = 'routineHiveBox';
+
 }

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  static const kprimaryColor = Color(0xFF7FD8D8);
-  static const kprimaryDullColor = Color.fromARGB(255, 186, 227, 227);
-  static const kblack = Colors.black;
+  static const kprimaryColor = Color(0xFF495CC5);
+  // static const kprimaryColor = Color(0xFF7FD8D8);
+  static const kprimaryDullColor = Color.fromARGB(255, 166, 177, 241);
+  static const kblack = Color(0xFF4F4F4F);
   static const kwhite = Color.fromARGB(255, 255, 255, 255);
   static const kgrey = Color(0xFF999999);
 }

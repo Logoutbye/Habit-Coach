@@ -8,7 +8,7 @@ class SplashServices with ChangeNotifier {
     try {
       final SharedPreferences sp = await SharedPreferences.getInstance();
       await sp.setBool('onboardingShown', value);
-      Navigator.pushReplacementNamed(context, RoutesName.app_dashboard);
+      Navigator.pushReplacementNamed(context, RoutesName.app_dashboard_bottom_app_bar);
 
       notifyListeners();
       return true; // Token saved successfully
@@ -25,7 +25,7 @@ class SplashServices with ChangeNotifier {
     if (onboardingShown) {
       // Onboarding has been shown before, navigate to the home screen
       await Future.delayed(const Duration(seconds: 3));
-      Navigator.pushReplacementNamed(context, RoutesName.app_dashboard);
+      Navigator.pushReplacementNamed(context, RoutesName.app_dashboard_bottom_app_bar);
     } else {
       // Onboarding has not been shown, navigate to the onboarding screen
       await Future.delayed(const Duration(seconds: 3));

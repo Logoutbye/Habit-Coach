@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:healthy_routine/core/app_colors.dart';
 import 'package:healthy_routine/core/app_styles.dart';
 
 class ReUseAbleTaskContainer extends StatelessWidget {
@@ -21,7 +22,10 @@ class ReUseAbleTaskContainer extends StatelessWidget {
         margin: const EdgeInsets.only(left: 24, right: 24, top: 20, bottom: 4),
         decoration: AppStyles.KContainerStyle,
         child: ListTile(
-          leading: SvgPicture.asset(svgPath),
+          leading: SvgPicture.asset(
+            svgPath,
+            color: AppColors.kprimaryColor,
+          ),
           title: Text(title),
           titleTextStyle: AppStyles.tasktitleTextStyleblackcolor,
           subtitleTextStyle: AppStyles.taskSubtitleTextStyleblackcolor,
