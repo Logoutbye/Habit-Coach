@@ -1,5 +1,6 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:healthy_routine/controllers/routine_controller.dart';
 import 'package:healthy_routine/core/app_colors.dart';
 import 'package:healthy_routine/core/app_strings.dart';
 import 'package:healthy_routine/view/App%20Dashboard/view/todays_routine_screen.dart';
@@ -15,6 +16,17 @@ class AppDashboardBottomAppBar extends StatefulWidget {
 }
 
 class _AppDashboardBottomAppBarState extends State<AppDashboardBottomAppBar> {
+  @override
+  void initState() {
+    // load();
+    // TODO: implement initState
+    super.initState();
+  }
+
+  // load() async {
+    // await RoutineController.loadAndPrintRoutines();
+  // }
+
   final ValueNotifier<int> currentIndex = ValueNotifier<int>(1);
   @override
   Widget build(BuildContext context) {
@@ -43,6 +55,7 @@ class _AppDashboardBottomAppBarState extends State<AppDashboardBottomAppBar> {
       ),
     );
   }
+
   final screens = [
     FixedRoutinesDashboard(),
     TodaysRoutineScreen(),

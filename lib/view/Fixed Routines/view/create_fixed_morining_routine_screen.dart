@@ -93,13 +93,13 @@ class CreateFixedMoriningRoutineScreen extends StatelessWidget {
                       selectedOption: 'Morning',
                       isSwitchOn: true,
                       selectedDays: [
-                        'sunday',
-                        'monday',
-                        'tuesday',
-                        'wednesday',
-                        'thursday',
-                        'friday',
-                        'saturday'
+                         "monday",
+                        "tuesday",
+                        "wednesday",
+                        "thursday",
+                        "friday",
+                        "saturday",
+                        "sunday",
                       ],
                       todos: <Todo>[
                         Todo(
@@ -130,3 +130,86 @@ class CreateFixedMoriningRoutineScreen extends StatelessWidget {
     );
   }
 }
+
+
+
+// now i have two more steps to do i have to schedule this notification for time and day i mean there is screen where i am creating flexible routines where i have list of the todo in routine it has time and in routine i am selecting weekdays so here weekdays and list can be dynamic so how many todos are and how many days are selected then there is create button where i am saving them in hive and want you to schedule the notifications and repeate them on the time and day when it comes same is the case with fixed routines but here list of todo and their times are not dynamic and the have to repeat every day i have a code for both of them let me share it 
+// class RoutineController {
+//   // static const String _boxName = 'routines';
+
+//   Future<void> saveRoutine(Routine routine, BuildContext context) async {
+//     var routinesBox = await Hive.openBox<Routine>(AppStrings.routineHiveBox);
+//     await routinesBox.add(routine);
+//     Provider.of<ScheduleProvider>(context, listen: false).notifyListeners();
+
+//     Navigator.pop(context);
+//     // navigatorKey.currentState!.popUntil((route) => route.isFirst);
+//     // Navigator.pushReplacement(
+//     //     context, SlideTransitionPage(page: const FixedRoutinesDashboard()));
+//     Utils.showSuccessFlushbar(
+//         'Success', 'You will be notified on time.', context);
+//   }}                    RoutineController routineController = RoutineController();
+//                   Routine newRoutine = Routine(
+//                       routineName: routineNameTextController.text,
+//                       routineDescription: routineDescriptionTextController.text,
+//                       selectedOption: dropDownProvider.selectedOption,
+//                       isSwitchOn: reminderProvider.isSwitchOn,
+//                       selectedDays: selectedDaysProvider.selectedDays,
+//                       todos: todoProvider.tasks,
+//                       routineType: 'flexible');
+
+//                   await routineController.saveRoutine(newRoutine, context);
+
+//                   routineNameTextController.clear();
+//                   routineDescriptionTextController.clear();
+//                   dropDownProvider.setOption(
+//                       'Morning'); // Set it to the initial state or another default value
+//                   reminderProvider
+//                       .toggleSwitch(); // Set it to the initial state or another default value
+//                   selectedDaysProvider.setDays(
+//                       []); // Set it to the initial state or another default value
+//                   // todoProvider.clearTasks(); // Clear the tasks list
+//                 }
+//               },
+//               buttonTextTitle: 'Create Routine',
+//             ),       child: ReUseAbleCreateButton(
+//                 onTap: () async {
+//                   RoutineController routineController = RoutineController();
+//                   Routine newRoutine = Routine(
+//                       routineName: 'Morning Vitality Boost',
+//                       routineDescription:
+//                           'Start your day with a personalized routine for a vibrant beginning.',
+//                       selectedOption: 'Morning',
+//                       isSwitchOn: true,
+//                       selectedDays: [
+//                         'sunday',
+//                         'monday',
+//                         'tuesday',
+//                         'wednesday',
+//                         'thursday',
+//                         'friday',
+//                         'saturday'
+//                       ],
+//                       todos: <Todo>[
+//                         Todo(
+//                             todoName: 'Make Bed',
+//                             time: DateTime.parse('2023-11-04 06:00:00')),
+//                         Todo(
+//                             todoName: 'Hydration',
+//                             time: DateTime.parse('2023-11-04 06:15:00')),
+//                         Todo(
+//                             todoName: 'Physical Activitiy',
+//                             time: DateTime.parse('2023-11-04 06:30:00')),
+//                         Todo(
+//                             todoName: 'Meditation',
+//                             time: DateTime.parse('2023-11-04 07:10:00')),
+//                         Todo(
+//                             todoName: 'Break Fast',
+//                             time: DateTime.parse('2023-11-04 08:15:00')),
+//                       ], routineType: 'fixed');
+
+//                   await routineController.saveRoutine(newRoutine, context);
+//                 },
+//                 buttonTextTitle: 'Add All',
+//               ),
+      //  now you can also decide if we have to schedule notification after they are saved and in the rouitne controller save routine or may be at the same button where they are being saved in hive although the are dynamic and fixed but they are in the list and and have same patern

@@ -9,7 +9,6 @@ import 'package:healthy_routine/core/components/reuseable_gap_widget.dart';
 import 'package:healthy_routine/core/components/reuseable_task_container.dart';
 import 'package:healthy_routine/models/routine.dart';
 
-
 class CreateFixedDayRoutineScreen extends StatelessWidget {
   const CreateFixedDayRoutineScreen({super.key});
 
@@ -100,13 +99,13 @@ class CreateFixedDayRoutineScreen extends StatelessWidget {
                       selectedOption: 'Midday',
                       isSwitchOn: true,
                       selectedDays: [
-                        'sunday',
-                        'monday',
-                        'tuesday',
-                        'wednesday',
-                        'thursday',
-                        'friday',
-                        'saturday'
+                        "monday",
+                        "tuesday",
+                        "wednesday",
+                        "thursday",
+                        "friday",
+                        "saturday",
+                        "sunday",
                       ],
                       todos: <Todo>[
                         Todo(
@@ -127,7 +126,8 @@ class CreateFixedDayRoutineScreen extends StatelessWidget {
                         Todo(
                             todoName: 'Exercise Session',
                             time: DateTime.parse('2023-11-04 16:30:00')),
-                      ], routineType: 'fixed');
+                      ],
+                      routineType: 'fixed');
 
                   await routineController.saveRoutine(newRoutine, context);
                 },

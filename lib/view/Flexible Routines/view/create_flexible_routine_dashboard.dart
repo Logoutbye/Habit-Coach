@@ -259,6 +259,21 @@ class _CreateFlexibleRoutineDashboardState
                     unSelectedDayTextColor: AppColors.kgrey,
                     backgroundColor: Colors.transparent,
                     onSelect: (values) {
+                      List<String> fixedOrderDays = [
+                        "monday",
+                        "tuesday",
+                        "wednesday",
+                        "thursday",
+                        "friday",
+                        "saturday",
+                        "sunday",
+                      ];
+
+                      // Sort the selected days based on the fixed order
+                      values.sort((a, b) =>
+                          fixedOrderDays.indexOf(a) -
+                          fixedOrderDays.indexOf(b));
+
                       selectedDaysProvider.setDays(values);
                     },
                   ),

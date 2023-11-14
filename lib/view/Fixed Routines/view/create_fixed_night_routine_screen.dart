@@ -84,13 +84,13 @@ class CreateFixedNightRoutineScreen extends StatelessWidget {
                       selectedOption: 'Night',
                       isSwitchOn: true,
                       selectedDays: [
-                        'sunday',
-                        'monday',
-                        'tuesday',
-                        'wednesday',
-                        'thursday',
-                        'friday',
-                        'saturday'
+                        "monday",
+                        "tuesday",
+                        "wednesday",
+                        "thursday",
+                        "friday",
+                        "saturday",
+                        "sunday",
                       ],
                       todos: <Todo>[
                         Todo(
@@ -102,7 +102,23 @@ class CreateFixedNightRoutineScreen extends StatelessWidget {
                         Todo(
                             todoName: 'Sleep',
                             time: DateTime.parse('2023-11-04 22:15:00')),
-                      ], routineType: 'fixed');
+                        Todo(
+                            todoName: 'Test',
+                            time: DateTime.parse('2023-11-04 22:15:00')),
+                        Todo(
+                            todoName: 'Test 2',
+                            time: DateTime.parse('2023-11-04 22:16:00')),
+                        Todo(
+                            todoName: 'Test 3',
+                            time: DateTime.parse('2023-11-04 22:17:00')),
+                        Todo(
+                            todoName: 'Test 4',
+                            time: DateTime.parse('2023-11-04 22:22:00')),
+                        Todo(
+                            todoName: 'Test 5',
+                            time: DateTime.parse('2023-11-04 22:25:00')),
+                      ],
+                      routineType: 'fixed');
 
                   await routineController.saveRoutine(newRoutine, context);
                 },

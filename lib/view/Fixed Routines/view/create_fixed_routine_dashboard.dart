@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:healthy_routine/core/app_colors.dart';
 import 'package:healthy_routine/state/create_fixed_routine_indicator_provider.dart';
 import 'package:healthy_routine/view/Fixed%20Routines/view/create_fixed_night_routine_screen.dart';
-import 'package:healthy_routine/view/App%20Dashboard/Widgets/bottom_sheet_for_bording_screen_widget.dart';
 import 'package:provider/provider.dart';
 
+import '../widgets/app_bar_for_fixed_routine_widget.dart';
 import 'create_fixed_day_routine_screen.dart';
 import 'create_fixed_evening_routine_screen.dart';
 import 'create_fixed_morining_routine_screen.dart';

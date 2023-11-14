@@ -88,13 +88,13 @@ class CreateFixedEveningRoutineScreen extends StatelessWidget {
                       selectedOption: 'Evening',
                       isSwitchOn: true,
                       selectedDays: [
-                        'sunday',
-                        'monday',
-                        'tuesday',
-                        'wednesday',
-                        'thursday',
-                        'friday',
-                        'saturday'
+                        "monday",
+                        "tuesday",
+                        "wednesday",
+                        "thursday",
+                        "friday",
+                        "saturday",
+                        "sunday",
                       ],
                       todos: <Todo>[
                         Todo(

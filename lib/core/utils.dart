@@ -6,11 +6,11 @@ class Utils {
   static showFlushbar(String message, BuildContext context) {
     Flushbar(
       message: message,
-      // messageColor: AppColors.kblack,
-      backgroundColor: AppColors.kgrey,
-      duration: const Duration(seconds: 3),
-      reverseAnimationCurve: Curves.easeInOut,
-      forwardAnimationCurve: Curves.decelerate,
+      messageColor: AppColors.kwhite,
+      backgroundColor: AppColors.kprimaryDullColor,
+      duration: const Duration(seconds: 2),
+      reverseAnimationCurve: Curves.easeInBack,
+      forwardAnimationCurve: Curves.linear,
       // backgroundColor: AppConstants.kcgreenbgColor,
       padding: const EdgeInsets.all(12),
       maxWidth: MediaQuery.of(context).size.width / 1.1,
@@ -26,21 +26,21 @@ class Utils {
       titleText: Text(
         title,
         style: const TextStyle(
-            fontWeight: FontWeight.bold, color: AppColors.kblack),
+            fontWeight: FontWeight.bold, color: AppColors.kwhite),
       ),
       message: message,
       titleColor: AppColors.kblack,
-      messageColor: AppColors.kblack,
+      messageColor: AppColors.kwhite,
       backgroundColor: AppColors.kprimaryDullColor,
-      duration: const Duration(seconds: 3),
-      reverseAnimationCurve: Curves.easeInOut,
+      duration: const Duration(seconds: 2),
+      reverseAnimationCurve: Curves.easeInOutBack,
       forwardAnimationCurve: Curves.decelerate,
       // backgroundColor: AppConstants.kcgreenbgColor,
       padding: const EdgeInsets.all(12),
       maxWidth: MediaQuery.of(context).size.width / 1.1,
       margin: const EdgeInsets.all(8),
       borderRadius: BorderRadius.circular(12),
-      positionOffset: 20,
+      positionOffset: 85,
     ).show(context);
   }
 }
