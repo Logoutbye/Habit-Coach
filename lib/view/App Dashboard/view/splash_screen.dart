@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:healthy_routine/core/app_colors.dart';
@@ -14,7 +13,7 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  SplashServices splashServices =SplashServices();
+  SplashServices splashServices = SplashServices();
   @override
   void initState() {
     super.initState();
@@ -29,22 +28,24 @@ class _SplashScreenState extends State<SplashScreen> {
         forceMaterialTransparency: true,
       ),
       body: Center(
-        child: 
-        // FractionallySizedBox(
-        //   widthFactor: 0.5, // Adjust as needed
-        //   heightFactor: 0.5, // Adjust as needed
-        //   child: Column(
-        //     mainAxisAlignment: MainAxisAlignment.center,
-        //     children: [
-              SvgPicture.asset(
-                AppStrings.splashScreenPath,
-                fit: BoxFit.contain,
-              ),
-              // Add other splash screen content here
-            // ],
+          child:
+              // FractionallySizedBox(
+              //   widthFactor: 0.5, // Adjust as needed
+              //   heightFactor: 0.5, // Adjust as needed
+              //   child: Column(
+              //     mainAxisAlignment: MainAxisAlignment.center,
+              //     children: [
+              Image.asset(AppStrings.splashScreenPathImage)
+
+          // SvgPicture.asset(
+          //   AppStrings.splashScreenPath,
+          //   fit: BoxFit.contain,
           // ),
-        // ),
-      ),
+          // Add other splash screen content here
+          // ],
+          // ),
+          // ),
+          ),
     );
   }
 }

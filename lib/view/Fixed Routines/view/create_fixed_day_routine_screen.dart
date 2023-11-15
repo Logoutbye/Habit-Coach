@@ -157,16 +157,3 @@ DateTime getFutureDateTime(int hour, int minute) {
 
   return scheduledDateTime;
 }
-
-
-// tz.TZDateTime getFutureDateTime(int hour, int minute) {
-//   final now = tz.TZDateTime.now(tz.local);
-//   tz.TZDateTime scheduledDateTime = tz.TZDateTime(tz.local, now.year, now.month, now.day, hour, minute);
-
-//   // If the scheduled time has already passed for today, schedule it for the same time tomorrow
-//   if (scheduledDateTime.isBefore(now)) {
-//     scheduledDateTime = scheduledDateTime.add(const Duration(days: 1));
-//   }
-
-//   return scheduledDateTime;
-// }

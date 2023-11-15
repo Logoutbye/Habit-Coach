@@ -26,6 +26,9 @@ class Routine {
   @HiveField(6)
   String routineType;
 
+  @HiveField(7)
+  List<int>? notificationIds; // Add this field
+
   Routine({
     required this.routineName,
     required this.routineDescription,
@@ -34,7 +37,9 @@ class Routine {
     required this.selectedDays,
     required this.todos,
     required this.routineType,
-  });
+    List<int>? notificationIds, // Remove initialization from here
+  }) : notificationIds =
+            notificationIds ?? []; // Initialize with an empty list if null
 }
 
 @HiveType(typeId: 0)

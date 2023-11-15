@@ -24,13 +24,14 @@ class RoutineAdapter extends TypeAdapter<Routine> {
       selectedDays: (fields[4] as List).cast<String>(),
       todos: (fields[5] as List).cast<Todo>(),
       routineType: fields[6] as String,
+      notificationIds: (fields[7] as List?)?.cast<int>(),
     );
   }
 
   @override
   void write(BinaryWriter writer, Routine obj) {
     writer
-      ..writeByte(7)
+      ..writeByte(8)
       ..writeByte(0)
       ..write(obj.routineName)
       ..writeByte(1)
@@ -44,7 +45,9 @@ class RoutineAdapter extends TypeAdapter<Routine> {
       ..writeByte(5)
       ..write(obj.todos)
       ..writeByte(6)
-      ..write(obj.routineType);
+      ..write(obj.routineType)
+      ..writeByte(7)
+      ..write(obj.notificationIds);
   }
 
   @override
