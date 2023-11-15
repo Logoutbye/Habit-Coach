@@ -8,6 +8,7 @@ import 'package:healthy_routine/core/components/re_use_able_create_button.dart';
 import 'package:healthy_routine/core/components/reuseable_gap_widget.dart';
 import 'package:healthy_routine/core/components/reuseable_task_container.dart';
 import 'package:healthy_routine/models/routine.dart';
+import 'package:healthy_routine/view/Fixed%20Routines/view/create_fixed_day_routine_screen.dart';
 
 class CreateFixedEveningRoutineScreen extends StatelessWidget {
   const CreateFixedEveningRoutineScreen({super.key});
@@ -19,7 +20,6 @@ class CreateFixedEveningRoutineScreen extends StatelessWidget {
         Container(
             padding: const EdgeInsets.all(8),
             width: MediaQuery.of(context).size.width / 1.1,
-            // height: MediaQuery.of(context).size.height / 5.2,
             clipBehavior: Clip.antiAlias,
             decoration: ShapeDecoration(
               color: Colors.white,
@@ -37,7 +37,6 @@ class CreateFixedEveningRoutineScreen extends StatelessWidget {
             ),
             child: Column(
               children: [
-                // Image.asset(AppStrings.morningIconPath),
                 SvgPicture.asset(AppStrings.eveningSvgPath),
                 const ReuseableGapWidget(),
                 Text('"Evening Relaxation and Unwind"',
@@ -98,18 +97,23 @@ class CreateFixedEveningRoutineScreen extends StatelessWidget {
                       ],
                       todos: <Todo>[
                         Todo(
-                            todoName: 'Dinner',
-                            time: DateTime.parse('2023-11-04 19:00:00')),
+                          todoName: 'Dinner',
+                          time: getFutureDateTime(19, 0), // 7:00 PM
+                        ),
                         Todo(
-                            todoName: 'Hydration',
-                            time: DateTime.parse('2023-11-04 19:45:00')),
+                          todoName: 'Hydration',
+                          time: getFutureDateTime(19, 45),
+                        ),
                         Todo(
-                            todoName: 'Mindfulness Activity',
-                            time: DateTime.parse('2023-11-04 20:00:00')),
+                          todoName: 'Mindfulness Activity',
+                          time: getFutureDateTime(20, 0),
+                        ),
                         Todo(
-                            todoName: 'Reading Time',
-                            time: DateTime.parse('2023-11-04 20:30:00')),
-                      ], routineType: 'fixed');
+                          todoName: 'Reading Time',
+                          time: getFutureDateTime(20, 30),
+                        ),
+                      ],
+                      routineType: 'fixed');
 
                   await routineController.saveRoutine(newRoutine, context);
                 },

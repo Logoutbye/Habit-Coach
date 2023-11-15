@@ -11,7 +11,7 @@ import '../app_styles.dart';
 class BuildRoutineWidget extends StatefulWidget {
   final String timeOfDay;
   final String routineType;
-  var scheduleProvider;
+  final scheduleProvider;
 
   BuildRoutineWidget({
     required this.timeOfDay,

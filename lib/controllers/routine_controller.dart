@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:healthy_routine/controllers/get_schedule_provider.dart';
 import 'package:healthy_routine/core/app_strings.dart';
 import 'package:healthy_routine/core/utils.dart';
@@ -11,22 +12,22 @@ import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 
 class RoutineController with ChangeNotifier {
-  // static Future<void> loadAndPrintRoutines() async {
-  //   var routinesBox = await Hive.openBox<Routine>(AppStrings.routineHiveBox);
-  //   for (var i = 0; i < routinesBox.length; i++) {
-  //     Routine routine = routinesBox.getAt(i)!;
-  //     print('Routine Name: ${routine.routineName}');
-  //     print('Routine Description: ${routine.routineDescription}');
-  //     print('Selected Option: ${routine.selectedOption}');
-  //     print('Is Switch On: ${routine.isSwitchOn}');
-  //     print('Selected Days: ${routine.selectedDays}');
-  //     print('Todos:');
-  //     for (var todo in routine.todos) {
-  //       print('  - ${todo.todoName} at ${todo.time}');
-  //     }
-  //     print('------------------------');
-  //   }
-  // }
+  static Future<void> loadAndPrintRoutines() async {
+    var routinesBox = await Hive.openBox<Routine>(AppStrings.routineHiveBox);
+    for (var i = 0; i < routinesBox.length; i++) {
+      Routine routine = routinesBox.getAt(i)!;
+      print('Routine Name: ${routine.routineName}');
+      print('Routine Description: ${routine.routineDescription}');
+      print('Selected Option: ${routine.selectedOption}');
+      print('Is Switch On: ${routine.isSwitchOn}');
+      print('Selected Days: ${routine.selectedDays}');
+      print('Todos:');
+      for (var todo in routine.todos) {
+        print('  - ${todo.todoName} at ${todo.time}');
+      }
+      print('------------------------');
+    }
+  }
 
   List<Routine> loadRoutines() {
     var routinesBox = Hive.box<Routine>(AppStrings.routineHiveBox);
@@ -34,18 +35,40 @@ class RoutineController with ChangeNotifier {
   }
 
   Future<void> saveRoutine(Routine routine, BuildContext context) async {
-    var routinesBox = await Hive.openBox<Routine>(AppStrings.routineHiveBox);
-    await routinesBox.add(routine);
+    try {
+      var routinesBox = await Hive.openBox<Routine>(AppStrings.routineHiveBox);
+      await routinesBox.add(routine);
 
-    Provider.of<ScheduleProvider>(context, listen: false).notifyListeners();
-    Navigator.pop(context);
-    Utils.showSuccessFlushbar(
-      'Success',
-      'You will be notified on time.',
-      context,
-    );
-    if (routine.isSwitchOn) {
-      await _scheduleNotifications(routine, 15);
+      Provider.of<ScheduleProvider>(context, listen: false).notifyListeners();
+      Navigator.pop(context);
+      Utils.showSuccessFlushbar(
+        'Success',
+        'You will be notified on time.',
+        context,
+      );
+      if (routine.isSwitchOn) {
+        await _scheduleNotifications(routine, 2);
+      }
+    } catch (e) {
+      print('Error::: $e');
+      print('Error: $e');
+
+      // Check if the exception is related to maximum alarms limit
+      if (e is PlatformException &&
+          e.message?.contains('Maximum limit of concurrent alarms') == true) {
+        Utils.showErrorFlushbar(
+          'Error',
+          'Failed to schedule routine. Maximum alarms limit reached. First delete unnecessary routines.',
+          context,
+        );
+      } else {
+        // Handle other exceptions here
+        Utils.showErrorFlushbar(
+          'Error',
+          'Failed to schedule routine. Please try again.',
+          context,
+        );
+      }
     }
   }
 

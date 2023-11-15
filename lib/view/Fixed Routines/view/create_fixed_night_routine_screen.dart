@@ -7,6 +7,7 @@ import 'package:healthy_routine/core/app_styles.dart';
 import 'package:healthy_routine/core/components/reuseable_gap_widget.dart';
 import 'package:healthy_routine/core/components/reuseable_task_container.dart';
 import 'package:healthy_routine/models/routine.dart';
+import 'package:healthy_routine/view/Fixed%20Routines/view/create_fixed_day_routine_screen.dart';
 import '../../../core/components/re_use_able_create_button.dart';
 
 class CreateFixedNightRoutineScreen extends StatelessWidget {
@@ -19,7 +20,6 @@ class CreateFixedNightRoutineScreen extends StatelessWidget {
         Container(
             padding: const EdgeInsets.all(8),
             width: MediaQuery.of(context).size.width / 1.1,
-            // height: MediaQuery.of(context).size.height / 5.2,
             clipBehavior: Clip.antiAlias,
             decoration: ShapeDecoration(
               color: Colors.white,
@@ -37,7 +37,6 @@ class CreateFixedNightRoutineScreen extends StatelessWidget {
             ),
             child: Column(
               children: [
-                // Image.asset(AppStrings.morningIconPath),
                 SvgPicture.asset(AppStrings.nightSvgPath),
                 const ReuseableGapWidget(),
                 const ReuseableGapWidget(),
@@ -94,29 +93,17 @@ class CreateFixedNightRoutineScreen extends StatelessWidget {
                       ],
                       todos: <Todo>[
                         Todo(
-                            todoName: 'Digital Detox',
-                            time: DateTime.parse('2023-11-04 21:45:00')),
+                          todoName: 'Digital Detox',
+                          time: getFutureDateTime(21, 45),
+                        ),
                         Todo(
-                            todoName: 'Pre-Bed Time Routine',
-                            time: DateTime.parse('2023-11-04 22:00:00')),
+                          todoName: 'Pre-Bed Time Routine',
+                          time: getFutureDateTime(22, 0),
+                        ),
                         Todo(
-                            todoName: 'Sleep',
-                            time: DateTime.parse('2023-11-04 22:15:00')),
-                        Todo(
-                            todoName: 'Test',
-                            time: DateTime.parse('2023-11-04 22:15:00')),
-                        Todo(
-                            todoName: 'Test 2',
-                            time: DateTime.parse('2023-11-04 22:16:00')),
-                        Todo(
-                            todoName: 'Test 3',
-                            time: DateTime.parse('2023-11-04 22:17:00')),
-                        Todo(
-                            todoName: 'Test 4',
-                            time: DateTime.parse('2023-11-04 22:22:00')),
-                        Todo(
-                            todoName: 'Test 5',
-                            time: DateTime.parse('2023-11-04 22:25:00')),
+                          todoName: 'Sleep',
+                          time: getFutureDateTime(22, 15),
+                        ),
                       ],
                       routineType: 'fixed');
 

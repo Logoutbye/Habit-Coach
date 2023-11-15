@@ -1,6 +1,5 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:healthy_routine/controllers/routine_controller.dart';
 import 'package:healthy_routine/core/app_colors.dart';
 import 'package:healthy_routine/core/app_strings.dart';
 import 'package:healthy_routine/view/App%20Dashboard/view/todays_routine_screen.dart';

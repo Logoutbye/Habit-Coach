@@ -8,6 +8,7 @@ import 'package:healthy_routine/core/components/re_use_able_create_button.dart';
 import 'package:healthy_routine/core/components/reuseable_gap_widget.dart';
 import 'package:healthy_routine/core/components/reuseable_task_container.dart';
 import 'package:healthy_routine/models/routine.dart';
+import 'package:timezone/timezone.dart' as tz;
 
 class CreateFixedDayRoutineScreen extends StatelessWidget {
   const CreateFixedDayRoutineScreen({super.key});
@@ -19,7 +20,6 @@ class CreateFixedDayRoutineScreen extends StatelessWidget {
         Container(
             padding: const EdgeInsets.all(8),
             width: MediaQuery.of(context).size.width / 1.1,
-            // height: MediaQuery.of(context).size.height / 5.2,
             clipBehavior: Clip.antiAlias,
             decoration: ShapeDecoration(
               color: Colors.white,
@@ -109,23 +109,29 @@ class CreateFixedDayRoutineScreen extends StatelessWidget {
                       ],
                       todos: <Todo>[
                         Todo(
-                            todoName: 'Strech Break',
-                            time: DateTime.parse('2023-11-04 10:00:00')),
+                          todoName: 'Strech Break',
+                          time: getFutureDateTime(10, 0), // 10:00 AM
+                        ),
                         Todo(
-                            todoName: 'Hydration',
-                            time: DateTime.parse('2023-11-04 10:30:00')),
+                          todoName: 'Hydration',
+                          time: getFutureDateTime(10, 30), // 10:30 AM
+                        ),
                         Todo(
-                            todoName: 'Lunch',
-                            time: DateTime.parse('2023-11-04 12:00:00')),
+                          todoName: 'Lunch',
+                          time: getFutureDateTime(12, 0), // 12:00 PM
+                        ),
                         Todo(
-                            todoName: 'Short Walk',
-                            time: DateTime.parse('2023-11-04 14:00:00')),
+                          todoName: 'Short Walk',
+                          time: getFutureDateTime(14, 0), // 2:00 PM
+                        ),
                         Todo(
-                            todoName: 'Healthy Snack',
-                            time: DateTime.parse('2023-11-04 15:30:00')),
+                          todoName: 'Healthy Snack',
+                          time: getFutureDateTime(15, 30), // 3:30 PM
+                        ),
                         Todo(
-                            todoName: 'Exercise Session',
-                            time: DateTime.parse('2023-11-04 16:30:00')),
+                          todoName: 'Exercise Session',
+                          time: getFutureDateTime(16, 30), // 4:30 PM
+                        ),
                       ],
                       routineType: 'fixed');
 
@@ -140,3 +146,27 @@ class CreateFixedDayRoutineScreen extends StatelessWidget {
     );
   }
 }
+DateTime getFutureDateTime(int hour, int minute) {
+  final now = DateTime.now();
+  DateTime scheduledDateTime = DateTime(now.year, now.month, now.day, hour, minute);
+
+  // If the scheduled time has already passed for today, schedule it for the same time tomorrow
+  if (scheduledDateTime.isBefore(now)) {
+    scheduledDateTime = scheduledDateTime.add(const Duration(days: 1));
+  }
+
+  return scheduledDateTime;
+}
+
+
+// tz.TZDateTime getFutureDateTime(int hour, int minute) {
+//   final now = tz.TZDateTime.now(tz.local);
+//   tz.TZDateTime scheduledDateTime = tz.TZDateTime(tz.local, now.year, now.month, now.day, hour, minute);
+
+//   // If the scheduled time has already passed for today, schedule it for the same time tomorrow
+//   if (scheduledDateTime.isBefore(now)) {
+//     scheduledDateTime = scheduledDateTime.add(const Duration(days: 1));
+//   }
+
+//   return scheduledDateTime;
+// }
