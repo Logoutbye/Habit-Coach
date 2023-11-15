@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:healthy_routine/controllers/routine_controller.dart';
 import 'package:healthy_routine/core/app_colors.dart';
 import 'package:healthy_routine/core/app_strings.dart';
 import 'package:healthy_routine/core/components/reuseable_gap_widget.dart';
@@ -209,13 +210,28 @@ class _BuildRoutineWidgetState extends State<BuildRoutineWidget> {
                   children: <Widget>[
                     const Divider(),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Padding(
                           padding: const EdgeInsets.only(left: 28.0),
                           child: Text('Task',
                               style: AppStyles.weekDaysTextGreycolor),
                         ),
-                        const SizedBox(),
+                        InkWell(
+                          onTap: () {
+                            RoutineController routinecontroller =
+                                RoutineController();
+                            routinecontroller.deleteRoutine(index, context);
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.only(right: 28.0),
+                            child: Icon(
+                              Icons.delete,
+                              color: AppColors.kprimaryColor,
+                              size: 22,
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                     ListView.builder(

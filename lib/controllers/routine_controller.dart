@@ -12,6 +12,30 @@ import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 
 class RoutineController with ChangeNotifier {
+ Future<void> deleteRoutine(int index, BuildContext context) async {
+    try {
+      var routinesBox =
+          await Hive.openBox<Routine>(AppStrings.routineHiveBox);
+      await routinesBox.deleteAt(index);
+
+      Provider.of<ScheduleProvider>(context, listen: false)
+          .notifyListeners();
+      Utils.showSuccessFlushbar(
+        'Success',
+        'Routine deleted successfully.',
+        context,
+      );
+    } catch (e) {
+      print('Error deleting routine: $e');
+      Utils.showErrorFlushbar(
+        'Error',
+        'Failed to delete routine. Please try again.',
+        context,
+      );
+    }
+  }
+
+
   static Future<void> loadAndPrintRoutines() async {
     var routinesBox = await Hive.openBox<Routine>(AppStrings.routineHiveBox);
     for (var i = 0; i < routinesBox.length; i++) {
@@ -34,6 +58,7 @@ class RoutineController with ChangeNotifier {
     return routinesBox.values.toList();
   }
 
+
   Future<void> saveRoutine(Routine routine, BuildContext context) async {
     try {
       var routinesBox = await Hive.openBox<Routine>(AppStrings.routineHiveBox);
@@ -51,7 +76,6 @@ class RoutineController with ChangeNotifier {
       }
     } catch (e) {
       print('Error::: $e');
-      print('Error: $e');
 
       // Check if the exception is related to maximum alarms limit
       if (e is PlatformException &&

@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:healthy_routine/controllers/get_schedule_provider.dart';
+import 'package:healthy_routine/controllers/routine_controller.dart';
 import 'package:healthy_routine/core/app_colors.dart';
 import 'package:healthy_routine/core/app_strings.dart';
 import 'package:healthy_routine/core/app_styles.dart';
 import 'package:healthy_routine/core/components/reuseable_gap_widget.dart';
+import 'package:healthy_routine/core/routings/slide_transition_page.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
+
+import '../view/edit_routine_screen.dart';
 
 class TodayRoutineBodyWidget extends StatelessWidget {
   @override
@@ -152,24 +156,55 @@ class TodayRoutineBodyWidget extends StatelessWidget {
                           children: <Widget>[
                             const Divider(),
                             Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.only(left: 28.0),
                                   child: Text('Task',
                                       style: AppStyles.weekDaysTextGreycolor),
                                 ),
-                                InkWell(
-                                  onTap: () {
-                                    
-                                  },
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(right: 28.0),
-                                    child: Text('Delete',
-                                        style: AppStyles.weekDaysTextGreycolor),
-                                  ),
+                                Row(
+                                  children: [
+                                    // InkWell(
+                                    //   onTap: () {
+                                    //     Navigator.push(
+                                    //         context,
+                                    //         SlideTransitionPage(
+                                    //             page: EditRoutineScreen()));
+                                    //   },
+                                    //   child: Padding(
+                                    //     padding:
+                                    //         const EdgeInsets.only(right: 28.0),
+                                    //     child: Icon(
+                                    //       Icons.edit,
+                                    //       color: AppColors.kprimaryColor,
+                                    //       size: 22,
+                                    //     ),
+                                    //   ),
+                                    // ),
+                              
+                                    InkWell(
+                                      onTap: () {
+                                        RoutineController routinecontroller =
+                                            RoutineController();
+                                        routinecontroller.deleteRoutine(
+                                            index, context);
+                                      },
+                                      child: Padding(
+                                        padding:
+                                            const EdgeInsets.only(right: 28.0),
+                                        child: Icon(
+                                          Icons.delete,
+                                          color: AppColors.kprimaryColor,
+                                          size: 22,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ],
                             ),
+                            ReuseableGapWidget(),
                             ListView.builder(
                               shrinkWrap: true,
                               physics: const NeverScrollableScrollPhysics(),
