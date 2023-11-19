@@ -10,7 +10,6 @@ import 'package:hive/hive.dart';
 import 'package:provider/provider.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
-import 'package:collection/collection.dart';
 
 class RoutineController with ChangeNotifier {
   Future<void> deleteRoutine(int index, BuildContext context) async {

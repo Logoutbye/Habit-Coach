@@ -1,11 +1,9 @@
-
-
-
 import 'dart:math';
 
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:healthy_routine/core/app_colors.dart';
+import 'package:healthy_routine/core/components/reuseable_gap_widget.dart';
 import 'package:healthy_routine/view/App%20Dashboard/Widgets/routine_creation_bottom_model_sheet_widget.dart';
 
 import '../../../core/app_styles.dart';
@@ -36,26 +34,28 @@ class TodaysRoutineHeaderWidget extends StatelessWidget {
       ),
       height: MediaQuery.of(context).size.height / 7.5,
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(12.0),
         child: Center(
           child: Column(
             children: [
+              ReuseableGapWidget(),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Todays Routines',
+                    'Today\'s Routines',
                     style: const TextStyle(
                         fontFamily: AppStyles.appFontFamily,
-                        fontSize: 22,
+                        fontSize: 18,
                         color: AppColors.kwhite),
                   ),
                   ElevatedButton(
                       onPressed: () {
                         showModalBottomSheet(
                           context: context,
-                          builder: (context) => const RoutineCreationBottomModelSheetWidget(),
+                          builder: (context) =>
+                              const RoutineCreationBottomModelSheetWidget(),
                         );
                       },
                       child: Text(
@@ -70,7 +70,7 @@ class TodaysRoutineHeaderWidget extends StatelessWidget {
                 children: [
                   DefaultTextStyle(
                     style: const TextStyle(
-                        fontFamily: AppStyles.appFontFamily, fontSize: 22),
+                        fontFamily: AppStyles.appFontFamily, fontSize: 18),
                     child: AnimatedTextKit(
                       animatedTexts: [
                         TyperAnimatedText(

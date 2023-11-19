@@ -5,11 +5,8 @@ import 'package:healthy_routine/core/app_colors.dart';
 import 'package:healthy_routine/core/app_strings.dart';
 import 'package:healthy_routine/core/app_styles.dart';
 import 'package:healthy_routine/core/components/reuseable_gap_widget.dart';
-import 'package:healthy_routine/core/routings/slide_transition_page.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
-
-import '../view/edit_routine_screen.dart';
 
 class TodayRoutineBodyWidget extends StatelessWidget {
   @override

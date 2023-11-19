@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:healthy_routine/core/app_colors.dart';
 
 import '../../../core/app_strings.dart';

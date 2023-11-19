@@ -155,7 +155,7 @@ class CreateTaskWidget extends StatelessWidget {
                       ),
                       leading: const Icon(
                         Icons.timer,
-                        color: AppColors.kgrey,
+                        color: AppColors.kprimaryColor,
                       ),
                       title: Text(
                         _formatTime(selectedTime),
