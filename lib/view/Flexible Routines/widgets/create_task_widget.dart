@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:healthy_routine/core/app_colors.dart';
 import 'package:healthy_routine/core/app_styles.dart';
 import 'package:healthy_routine/core/components/reuseable_gap_widget.dart';
+import 'package:healthy_routine/core/utils.dart';
 import 'package:healthy_routine/state/task_provider.dart';
+import 'package:healthy_routine/view/Fixed%20Routines/view/create_fixed_midday_routine_screen.dart';
 import 'package:provider/provider.dart';
 
 import '../../../models/routine.dart';
@@ -105,7 +107,7 @@ class CreateTaskWidget extends StatelessWidget {
   }
 
   Future<void> _showAddTaskDialog(BuildContext context) async {
-    DateTime selectedTime = DateTime.now();
+    DateTime selectedTime = DateTime.now().add(Duration(minutes: 1));
 
     showModalBottomSheet(
       isScrollControlled: true,
@@ -138,8 +140,18 @@ class CreateTaskWidget extends StatelessWidget {
                     ListTile(
                       trailing: GestureDetector(
                         onTap: () {
-                          Navigator.of(context).pop(); // Close the bottom sheet
-                          _addTask(context, _taskController.text, selectedTime);
+                          if (_taskController.text.isEmpty) {
+                            Utils.showFlushbar(
+                                'Please enter task name.', context);
+                          } else {
+                            Navigator.of(context)
+                                .pop(); // Close the bottom sheet
+                            _addTask(
+                                context,
+                                _taskController.text,
+                                getFutureDateTime(
+                                    selectedTime.hour, selectedTime.minute));
+                          }
                         },
                         child: Container(
                           padding: EdgeInsets.all(8),

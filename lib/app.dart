@@ -5,6 +5,7 @@ import 'package:healthy_routine/services/local_notification.dart';
 import 'package:healthy_routine/state/onboarding_screen__indicator_provider.dart';
 import 'package:healthy_routine/controllers/get_schedule_provider.dart';
 import 'package:healthy_routine/state/selected_day_provider.dart';
+import 'package:healthy_routine/state/set_screen_index_for_fixed_routine_provider.dart';
 import 'package:healthy_routine/state/task_provider.dart';
 import 'package:healthy_routine/state/timer_provider.dart';
 import 'package:hive_flutter/adapters.dart';
@@ -47,6 +48,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (context) => SelectedDaysProvider(),
         ),
+        ChangeNotifierProvider(
+          create: (context) => SetScreenIndexForFixedRoutineProvider(),
+        ),
       ],
       child: MaterialApp(
         navigatorKey: navigatorKey,
@@ -72,4 +76,3 @@ initilizedApp() async {
   Hive.registerAdapter(TodoAdapter());
   await Hive.openBox<Routine>(AppStrings.routineHiveBox);
 }
-

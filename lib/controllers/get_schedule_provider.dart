@@ -59,6 +59,7 @@ class ScheduleProvider with ChangeNotifier {
         'description': routine.routineDescription,
         'alerts': routine.isSwitchOn,
         'weekDays': routine.selectedDays.join(),
+        'selectedOption': routine.selectedOption,
         'routineType': routine.routineType,
         'todos': routine.todos.map((todo) {
           return {'todoName': todo.todoName, 'time': _formatTime(todo.time)};

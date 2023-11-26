@@ -4,6 +4,7 @@ import 'package:healthy_routine/core/app_colors.dart';
 import 'package:healthy_routine/core/app_strings.dart';
 import 'package:healthy_routine/core/components/reuseable_gap_widget.dart';
 import 'package:healthy_routine/controllers/get_schedule_provider.dart';
+import 'package:healthy_routine/state/set_screen_index_for_fixed_routine_provider.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
@@ -28,6 +29,26 @@ class BuildRoutineWidget extends StatefulWidget {
 class _BuildRoutineWidgetState extends State<BuildRoutineWidget> {
   @override
   void initState() {
+    var screenIndexProvider =
+        Provider.of<SetScreenIndexForFixedRoutineProvider>(context,
+            listen: false);
+    Future.microtask(() {
+
+      if (widget.routineType == 'fixed' && widget.timeOfDay == 'Morning') {
+        screenIndexProvider.SetScreenIndex(0);
+      } else if (widget.routineType == 'fixed' &&
+          widget.timeOfDay == 'Midday') {
+        screenIndexProvider.SetScreenIndex(1);
+      } else if (widget.routineType == 'fixed' &&
+          widget.timeOfDay == 'Afternoon') {
+        screenIndexProvider.SetScreenIndex(2);
+      } else if (widget.routineType == 'fixed' &&
+          widget.timeOfDay == 'Evening') {
+        screenIndexProvider.SetScreenIndex(3);
+      } else if (widget.routineType == 'fixed' && widget.timeOfDay == 'Night') {
+        screenIndexProvider.SetScreenIndex(4);
+      }
+    });
     Provider.of<ScheduleProvider>(context, listen: false)
         .fetchSchedulesFromHive(widget.timeOfDay, widget.routineType);
     super.initState();
@@ -35,9 +56,6 @@ class _BuildRoutineWidgetState extends State<BuildRoutineWidget> {
 
   @override
   Widget build(BuildContext context) {
-    // var scheduleProvider=  Provider.of<ScheduleProvider>(context);
-    // return Consumer<ScheduleProvider>(
-    //   builder: (BuildContext context, scheduleProvider, Widget? child) {
     if (widget.scheduleProvider.schedules.isEmpty) {
       return Column(
         mainAxisAlignment: MainAxisAlignment.center,

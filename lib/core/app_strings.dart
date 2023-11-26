@@ -7,14 +7,11 @@ class AppStrings {
   static const splashpath3 = 'assets/splashpath33.jpg';
   static const fixedRoutineIconPath = 'assets/images/fixed.png';
   static const flexibleRoutineIconPath = 'assets/images/flexible.png';
-  static const morningIconPath = 'assets/images/morning.png';
   static const splashScreenPathImage = 'assets/images/splash_screen.png';
 
   //svgs
   static const morningSvgPath = 'assets/svg/check.svg';
-  static const daySvgPath = 'assets/svg/day.svg';
   static const makebedSvgPath = 'assets/svg/makebed.svg';
-  static const eveningSvgPath = 'assets/svg/evening.svg';
   static const nightSvgPath = 'assets/svg/night.svg';
   static const hydrationSvgPath = 'assets/svg/hydration.svg';
   static const physicalSvgPath = 'assets/svg/physical.svg';
@@ -32,6 +29,11 @@ class AppStrings {
   static const splashScreenPathsvg = 'assets/svg/splash_screen.svg';
 
   static const animationPath = 'assets/animation.json';
+ 
+  static const morning_logoPath = 'assets/svg/morning_logo.svg';
+  static const midday_logoPath = 'assets/svg/midday_logo.svg';
+  static const afternoon_logoPath = 'assets/afternoon_logo.png';
+  static const evening_logoPath = 'assets/svg/evening_logo.svg';
 
   //Hive Boxes
   static const routineHiveBox = 'routineHiveBox';

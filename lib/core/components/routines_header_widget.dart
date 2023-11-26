@@ -5,14 +5,24 @@ import 'package:flutter/material.dart';
 import 'package:healthy_routine/core/app_colors.dart';
 import 'package:healthy_routine/core/app_styles.dart';
 import 'package:healthy_routine/core/components/reuseable_gap_widget.dart';
+import 'package:healthy_routine/core/routings/slide_transition_page.dart';
 import 'package:healthy_routine/services/get_random_health_tips.dart';
+import 'package:healthy_routine/state/set_screen_index_for_fixed_routine_provider.dart';
+import 'package:healthy_routine/view/Fixed%20Routines/view/create_fixed_afternoon_screen.dart';
+import 'package:healthy_routine/view/Fixed%20Routines/view/create_fixed_midday_routine_screen.dart';
+import 'package:healthy_routine/view/Fixed%20Routines/view/create_fixed_evening_routine_screen.dart';
+import 'package:healthy_routine/view/Fixed%20Routines/view/create_fixed_morining_routine_screen.dart';
+import 'package:healthy_routine/view/Fixed%20Routines/view/create_fixed_night_routine_screen.dart';
+import 'package:provider/provider.dart';
 
 import '../routings/routes_name.dart';
 
 class RoutinesHeaderWidget extends StatelessWidget {
   final String title;
+  final index;
   const RoutinesHeaderWidget({
     required this.title,
+    required this.index,
     Key? key,
   }) : super(key: key);
 
@@ -99,6 +109,11 @@ class RoutinesHeaderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenIndexProvider =
+        Provider.of<SetScreenIndexForFixedRoutineProvider>(context);
+    print(
+        "Provider Index when navigating to screen: ${screenIndexProvider.index}");
+
     var greeting = getGreeting();
     var timeOfDay = 'night';
 
@@ -151,10 +166,46 @@ class RoutinesHeaderWidget extends StatelessWidget {
                         if (title == 'Flexible Routines') {
                           Navigator.pushNamed(
                               context, RoutesName.create_flexible_routine);
-                        } else {
-                          Navigator.pushNamed(
-                              context, RoutesName.create_fixed_routine);
+                        } else if (screenIndexProvider.index == 0) {
+                          Navigator.push(
+                              context,
+                              SlideTransitionPage(
+                                  page: CreateFixedMoriningRoutineScreen(
+                                isAppBarNeeded: true,
+                              )));
+                        } else if (screenIndexProvider.index == 1) {
+                          Navigator.push(
+                              context,
+                              SlideTransitionPage(
+                                  page: CreateFixedMidDayRoutineScreen(
+                                isAppBarNeeded: true,
+                              )));
+                        } else if (screenIndexProvider.index == 2) {
+                          Navigator.push(
+                              context,
+                              SlideTransitionPage(
+                                  page: CreateFixedAfternoonRoutineScreen(
+                                isAppBarNeeded: true,
+                              )));
+                        } else if (screenIndexProvider.index == 3) {
+                          Navigator.push(
+                              context,
+                              SlideTransitionPage(
+                                  page: CreateFixedEveningRoutineScreen(
+                                isAppBarNeeded: true,
+                              )));
+                        } else if (screenIndexProvider.index == 4) {
+                          Navigator.push(
+                              context,
+                              SlideTransitionPage(
+                                  page: CreateFixedNightRoutineScreen(
+                                isAppBarNeeded: true,
+                              )));
                         }
+                        // else {
+                        //   Navigator.pushNamed(
+                        //       context, RoutesName.create_fixed_routine);
+                        // }
                       },
                       child: Text(
                         'Add New',

@@ -18,7 +18,6 @@ class _AppDashboardBottomAppBarState extends State<AppDashboardBottomAppBar> {
   @override
   void initState() {
     // load();
-    // TODO: implement initState
     super.initState();
   }
 

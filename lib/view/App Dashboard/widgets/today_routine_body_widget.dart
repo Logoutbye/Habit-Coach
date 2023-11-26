@@ -11,6 +11,14 @@ import 'package:provider/provider.dart';
 class TodayRoutineBodyWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final Map<String, Color> timeColors = {
+      'Morning': Color(0xFFB0E0E6),
+      'Midday': Color(0xFFFFFDD0),
+      'Afternoon': Color(0xFFFFDAB9),
+      'Evening': Color(0xFFE6E6FA),
+      'Night': Color(0xFFFFD1DC),
+      'Flexible Routine': Color(0xFF87CEFA),
+    };
     return Expanded(
       child: Padding(
         padding: const EdgeInsets.only(top: 12),
@@ -41,6 +49,12 @@ class TodayRoutineBodyWidget extends StatelessWidget {
               physics: const AlwaysScrollableScrollPhysics(),
               itemCount: scheduleProvider.schedules.length,
               itemBuilder: (context, index) {
+                var selectedOption =
+                    scheduleProvider.schedules[index]['selectedOption'];
+
+                var color = timeColors.containsKey(selectedOption)
+                    ? timeColors[selectedOption]
+                    : Colors.grey; // Default color for unknown options
                 return Column(
                   children: [
                     Theme(
@@ -51,7 +65,17 @@ class TodayRoutineBodyWidget extends StatelessWidget {
                         width: double.infinity,
                         padding: const EdgeInsets.all(6),
                         margin: const EdgeInsets.only(left: 12, right: 12),
-                        decoration: AppStyles.KContainerStyle,
+                        // decoration: AppStyles.KContainerStyle,
+                        decoration: ShapeDecoration(
+                            // color: colors[index % colors.length],
+                            color: scheduleProvider.schedules[index]
+                                        ['routineType'] ==
+                                    'flexible'
+                                ? Color(0xFF87CEFA)
+                                : color,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            )),
                         child: ExpansionTile(
                           initiallyExpanded: false,
                           collapsedIconColor: AppColors.kgrey,
@@ -179,7 +203,7 @@ class TodayRoutineBodyWidget extends StatelessWidget {
                                     //     ),
                                     //   ),
                                     // ),
-                              
+
                                     InkWell(
                                       onTap: () {
                                         RoutineController routinecontroller =
@@ -232,7 +256,7 @@ class TodayRoutineBodyWidget extends StatelessWidget {
                                             maxWidth: MediaQuery.of(context)
                                                     .size
                                                     .width /
-                                                1.4,
+                                                1.3,
                                           ),
                                           margin: const EdgeInsets.all(2),
                                           padding: const EdgeInsets.all(6),
@@ -256,10 +280,20 @@ class TodayRoutineBodyWidget extends StatelessWidget {
                                                     color: AppColors.kwhite,
                                                     size: 18,
                                                   ),
-                                                  Text(
-                                                    '  ${todo['todoName']}',
-                                                    style: AppStyles
-                                                        .titleTextStylewhitecolor,
+                                                  Container(
+                                                    padding: EdgeInsets.only(
+                                                        left: 4),
+                                                    constraints: BoxConstraints(
+                                                        maxWidth: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .width /
+                                                            1.5),
+                                                    child: Text(
+                                                      '${todo['todoName']}',
+                                                      style: AppStyles
+                                                          .titleTextStylewhitecolor,
+                                                    ),
                                                   ),
                                                 ],
                                               ),
@@ -271,10 +305,14 @@ class TodayRoutineBodyWidget extends StatelessWidget {
                                                     color: AppColors.kwhite,
                                                     size: 18,
                                                   ),
-                                                  Text(
-                                                    '  ${todo['time']}',
-                                                    style: AppStyles
-                                                        .titleTextStylewhitecolor,
+                                                  Container(
+                                                    padding: EdgeInsets.only(
+                                                        left: 4),
+                                                    child: Text(
+                                                      '${todo['time']}',
+                                                      style: AppStyles
+                                                          .titleTextStylewhitecolor,
+                                                    ),
                                                   ),
                                                 ],
                                               ),
@@ -304,4 +342,32 @@ class TodayRoutineBodyWidget extends StatelessWidget {
       ),
     );
   }
+
+  final List<Color> colors = [
+    Color(0xFFFFD700), // Light Gold
+    Color(0xFFFFD1DC), // Pale Pink
+    Color(0xFFE6E6FA), // Light Lavender
+    Color(0xFF98FF98), // Mint Green
+    Color(0xFFFFDAB9), // Peach
+    Color(0xFF87CEEB), // Sky Blue
+    Color(0xFFD3D3D3), // Light Gray
+    Color(0xFFFFFDD0), // Cream
+    Color(0xFFFFF0F5), // Lavender Blush
+    Color(0xFFE0FFFF), // Light Cyan
+  ];
+  // final List<Color> colors = [
+  //   Colors.deepPurple, // Dark purple
+  //   Colors.green, // Green
+  //   Colors.deepOrange, // Deep orange
+  //   Colors.blueGrey, // Blue-grey
+  //   // Add more colors as needed
+  // ];
+  // final List<Color> colors = [
+  //   Color(0xFFFF8C00), // Complementary color (orange)
+  //   Color(0xFF00CED1), // Triadic color (teal)
+  //   Color(0xFFFFD700), // Triadic color (yellow)
+  //   Color(0xFF32CD32), // Analogous color (green)
+  //   Color(0xFF8A2BE2), // Analogous color (purple)
+  //   // Add more colors as needed
+  // ];
 }

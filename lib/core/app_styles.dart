@@ -9,6 +9,12 @@ class AppStyles {
     color: AppColors.kprimaryColor,
     fontFamily: AppStyles.appFontFamily,
   );
+  static TextStyle titleTextStyleofCreateScreen = const TextStyle(
+    color: AppColors.kblack,
+    fontSize: 13,
+    fontFamily: AppStyles.appFontFamily,
+    fontWeight: FontWeight.w500,
+  );
   static TextStyle headingTextStyleBlack = const TextStyle(
     color: AppColors.kblack,
     fontSize: 16,

@@ -22,10 +22,15 @@ class ReUseAbleTaskContainer extends StatelessWidget {
         margin: const EdgeInsets.only(left: 24, right: 24, top: 20, bottom: 4),
         decoration: AppStyles.KContainerStyle,
         child: ListTile(
-          leading: SvgPicture.asset(
-            svgPath,
-            color: AppColors.kprimaryColor,
-          ),
+          leading: svgPath == 'digital'
+              ? Icon(
+                  Icons.computer,
+                  color: AppColors.kprimaryColor,
+                )
+              : SvgPicture.asset(
+                  svgPath,
+                  color: AppColors.kprimaryColor,
+                ),
           title: Text(title),
           titleTextStyle: AppStyles.tasktitleTextStyleblackcolor,
           subtitleTextStyle: AppStyles.taskSubtitleTextStyleblackcolor,

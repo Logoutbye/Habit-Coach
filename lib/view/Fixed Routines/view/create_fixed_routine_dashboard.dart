@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:healthy_routine/core/app_colors.dart';
 import 'package:healthy_routine/state/create_fixed_routine_indicator_provider.dart';
+import 'package:healthy_routine/view/Fixed%20Routines/view/create_fixed_afternoon_screen.dart';
 import 'package:healthy_routine/view/Fixed%20Routines/view/create_fixed_night_routine_screen.dart';
 import 'package:provider/provider.dart';
 
 import '../widgets/app_bar_for_fixed_routine_widget.dart';
-import 'create_fixed_day_routine_screen.dart';
+import 'create_fixed_midday_routine_screen.dart';
 import 'create_fixed_evening_routine_screen.dart';
 import 'create_fixed_morining_routine_screen.dart';
 
@@ -25,7 +26,8 @@ class _CreateFixedRoutineDashboardState
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: AppBarForFixedRoutineWidget(
-          controller: context.read<CreateFixedScreenIndicatorProvider>().controller,
+          controller:
+              context.read<CreateFixedScreenIndicatorProvider>().controller,
         ),
         backgroundColor: AppColors.kprimaryColor,
         foregroundColor: AppColors.kwhite,
@@ -33,10 +35,12 @@ class _CreateFixedRoutineDashboardState
       body: Stack(
         children: [
           PageView(
-            controller: context.read<CreateFixedScreenIndicatorProvider>().controller,
+            controller:
+                context.read<CreateFixedScreenIndicatorProvider>().controller,
             children: const [
               CreateFixedMoriningRoutineScreen(),
-              CreateFixedDayRoutineScreen(),
+              CreateFixedMidDayRoutineScreen(),
+              CreateFixedAfternoonRoutineScreen(),
               CreateFixedEveningRoutineScreen(),
               CreateFixedNightRoutineScreen(),
             ],

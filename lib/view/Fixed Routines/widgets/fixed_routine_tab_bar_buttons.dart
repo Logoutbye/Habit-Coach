@@ -29,7 +29,7 @@ class FixedRoutineTabbarButtons extends StatelessWidget {
         tabs: const [
           Tab(
             // child: Text('Morning'),
-            text: 'Morining',
+            text: 'Morning',
           ),
           Tab(
             // child: Text('Midday'),

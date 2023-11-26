@@ -32,9 +32,10 @@ class TodaysRoutineHeaderWidget extends StatelessWidget {
           ),
         ],
       ),
-      height: MediaQuery.of(context).size.height / 7.5,
-      child: Padding(
+      height: MediaQuery.of(context).size.height / 5.5,
+      child: Container(
         padding: const EdgeInsets.all(12.0),
+        margin: EdgeInsets.all(8),
         child: Center(
           child: Column(
             children: [

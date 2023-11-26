@@ -1,14 +1,18 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
 import 'package:healthy_routine/controllers/get_schedule_provider.dart';
 import 'package:healthy_routine/core/components/build_routine_widget.dart';
-import 'package:provider/provider.dart';
 
 import 'fixed_routine_tab_bar_buttons.dart';
 
 class FixedRoutineBodyWidget extends StatefulWidget {
-  const FixedRoutineBodyWidget({
-    super.key,
-  });
+  late TabController tabController;
+  FixedRoutineBodyWidget({
+    Key? key,
+    required this.tabController,
+  }) : super(key: key);
 
   @override
   State<FixedRoutineBodyWidget> createState() => _FixedRoutineBodyWidgetState();
@@ -16,29 +20,15 @@ class FixedRoutineBodyWidget extends StatefulWidget {
 
 class _FixedRoutineBodyWidgetState extends State<FixedRoutineBodyWidget>
     with TickerProviderStateMixin {
-  late TabController _tabController;
-
-  @override
-  void initState() {
-    super.initState();
-    _tabController = TabController(length: 5, vsync: this);
-  }
-
-  @override
-  void dispose() {
-    _tabController.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: Column(
         children: [
-          FixedRoutineTabbarButtons(tabController: _tabController),
+          FixedRoutineTabbarButtons(tabController: widget.tabController),
           Expanded(
             child: TabBarView(
-              controller: _tabController,
+              controller: widget.tabController,
               children: [
                 Consumer<ScheduleProvider>(
                   builder: (context, value, child) {
@@ -47,6 +37,7 @@ class _FixedRoutineBodyWidgetState extends State<FixedRoutineBodyWidget>
                       'Morning',
                       'fixed',
                     );
+
                     return BuildRoutineWidget(
                       timeOfDay: 'Morning',
                       routineType: 'fixed',
@@ -60,6 +51,7 @@ class _FixedRoutineBodyWidgetState extends State<FixedRoutineBodyWidget>
                     'Midday',
                     'fixed',
                   );
+
                   return BuildRoutineWidget(
                     timeOfDay: 'Midday',
                     routineType: 'fixed',
@@ -72,6 +64,7 @@ class _FixedRoutineBodyWidgetState extends State<FixedRoutineBodyWidget>
                     'Afternoon',
                     'fixed',
                   );
+
                   return BuildRoutineWidget(
                     timeOfDay: 'Afternoon',
                     routineType: 'fixed',
@@ -97,6 +90,7 @@ class _FixedRoutineBodyWidgetState extends State<FixedRoutineBodyWidget>
                     'Night',
                     'fixed',
                   );
+
                   return BuildRoutineWidget(
                     timeOfDay: 'Night',
                     routineType: 'fixed',

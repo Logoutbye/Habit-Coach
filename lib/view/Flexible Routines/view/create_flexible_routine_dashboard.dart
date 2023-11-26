@@ -71,7 +71,7 @@ class _CreateFlexibleRoutineDashboardState
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: Text(
                     'Routine Name',
-                    style: AppStyles.titleTextStyleprimarycolor,
+                    style: AppStyles.titleTextStyleofCreateScreen,
                   ),
                 ),
                 Container(
@@ -85,12 +85,7 @@ class _CreateFlexibleRoutineDashboardState
                   child: TextFormField(
                     controller: routineNameTextController,
                     maxLines: 1,
-                    style: TextStyle(
-                      color: AppColors.kgrey,
-                      fontSize: 13,
-                      fontFamily: AppStyles.appFontFamily,
-                      fontWeight: FontWeight.w500,
-                    ),
+                    style: AppStyles.titleTextStyleprimarycolor,
                     decoration: InputDecoration(
                         hintStyle: AppStyles.weekDaysTextGreycolor,
                         hintText: 'e.g Workout',
@@ -107,7 +102,7 @@ class _CreateFlexibleRoutineDashboardState
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: Text(
                     'Description',
-                    style: AppStyles.titleTextStyleprimarycolor,
+                    style: AppStyles.titleTextStyleofCreateScreen,
                   ),
                 ),
                 Container(
@@ -123,12 +118,7 @@ class _CreateFlexibleRoutineDashboardState
                   child: TextFormField(
                     controller: routineDescriptionTextController,
                     maxLines: 3,
-                    style: TextStyle(
-                      color: AppColors.kgrey,
-                      fontSize: 13,
-                      fontFamily: AppStyles.appFontFamily,
-                      fontWeight: FontWeight.w500,
-                    ),
+                    style: AppStyles.titleTextStyleprimarycolor,
                     decoration: InputDecoration(
                         hintText: 'e.g   six biceps exercises on friday ',
                         hintStyle: AppStyles.weekDaysTextGreycolor,
@@ -144,8 +134,30 @@ class _CreateFlexibleRoutineDashboardState
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: Text(
+                    'Add Activities',
+                    // style: TextStyle(
+                    //   color: AppColors.kprimaryColor,
+                    //   fontSize: 13,
+                    //   fontFamily: AppStyles.appFontFamily,
+                    //   fontWeight: FontWeight.w500,
+                    // ),
+                    style: AppStyles.titleTextStyleofCreateScreen,
+                  ),
+                ),
+                //
+              ],
+            ),
+            CreateTaskWidget(),
+            const ReuseableGapWidget(),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: Text(
                     'Time Of the Day',
-                    style: AppStyles.titleTextStyleprimarycolor,
+                    style: AppStyles.titleTextStyleofCreateScreen,
+                    // style: AppStyles.titleTextStyleprimarycolor,
                   ),
                 ),
                 Consumer<DropdownProvider>(
@@ -161,6 +173,11 @@ class _CreateFlexibleRoutineDashboardState
                       child: DropdownButton<String>(
                         borderRadius: BorderRadius.circular(20),
                         underline: const SizedBox(),
+                        alignment: Alignment.center,
+                        icon: Icon(
+                          Icons.arrow_drop_down_rounded,
+                          color: AppColors.kprimaryColor,
+                        ),
                         value: dropdownModel.selectedOption,
                         onChanged: (String? newValue) {
                           dropdownModel.setOption(
@@ -178,7 +195,7 @@ class _CreateFlexibleRoutineDashboardState
                             value: value,
                             child: Text(
                               value,
-                              style: AppStyles.weekDaysTextGreycolor,
+                              style: AppStyles.titleTextStyleprimarycolor,
                             ),
                           );
                         }).toList(),
@@ -196,7 +213,8 @@ class _CreateFlexibleRoutineDashboardState
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: Text(
                     'Recieve Notifications',
-                    style: AppStyles.titleTextStyleprimarycolor,
+                    style: AppStyles.titleTextStyleofCreateScreen,
+                    // style: AppStyles.titleTextStyleprimarycolor,
                   ),
                 ),
                 Container(
@@ -239,7 +257,8 @@ class _CreateFlexibleRoutineDashboardState
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: Text(
                     'Repeat',
-                    style: AppStyles.titleTextStyleprimarycolor,
+                    style: AppStyles.titleTextStyleofCreateScreen,
+                    // style: AppStyles.titleTextStyleprimarycolor,
                   ),
                 ),
                 Container(
@@ -251,11 +270,12 @@ class _CreateFlexibleRoutineDashboardState
                       left: 12, right: 12, bottom: 12, top: 4),
                   decoration: AppStyles.KContainerStyle,
                   child: SelectWeekDays(
-                    fontSize: 14,
+                    fontSize: 12,
                     fontWeight: FontWeight.w500,
                     days: _days,
                     border: false,
-                    selectedDayTextColor: AppColors.kprimaryColor,
+                    daysFillColor: AppColors.kprimaryColor,
+                    selectedDayTextColor: AppColors.kwhite,
                     unSelectedDayTextColor: AppColors.kgrey,
                     backgroundColor: Colors.transparent,
                     onSelect: (values) {
@@ -280,21 +300,6 @@ class _CreateFlexibleRoutineDashboardState
                 ),
               ],
             ),
-            const ReuseableGapWidget(),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: Text(
-                    'Add Activities',
-                    style: AppStyles.titleTextStyleprimarycolor,
-                  ),
-                ),
-                //
-              ],
-            ),
-            CreateTaskWidget(),
             const ReuseableGapWidget(),
             ReUseAbleCreateButton(
               onTap: () async {

@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:healthy_routine/controllers/routine_controller.dart';
 import 'package:healthy_routine/core/app_colors.dart';
 import 'package:healthy_routine/core/app_strings.dart';
 import 'package:healthy_routine/core/app_styles.dart';
-import 'package:healthy_routine/core/components/re_use_able_create_button.dart';
 import 'package:healthy_routine/core/components/reuseable_gap_widget.dart';
 import 'package:healthy_routine/core/components/reuseable_task_container.dart';
 import 'package:healthy_routine/models/routine.dart';
 import 'package:healthy_routine/view/Fixed%20Routines/view/create_fixed_midday_routine_screen.dart';
 
-class CreateFixedEveningRoutineScreen extends StatelessWidget {
-  const CreateFixedEveningRoutineScreen(
-      {super.key, this.isAppBarNeeded = false});
+import '../../../core/components/re_use_able_create_button.dart';
+
+class CreateFixedAfternoonRoutineScreen extends StatelessWidget {
   final bool isAppBarNeeded;
+
+  const CreateFixedAfternoonRoutineScreen(
+      {super.key, this.isAppBarNeeded = false});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +22,7 @@ class CreateFixedEveningRoutineScreen extends StatelessWidget {
       appBar: isAppBarNeeded
           ? AppBar(
               automaticallyImplyLeading: false,
-              title: Text('Evening'),
+              title: Text('Afternoon'),
               centerTitle: true,
               backgroundColor: AppColors.kprimaryColor,
               foregroundColor: AppColors.kwhite,
@@ -49,15 +50,19 @@ class CreateFixedEveningRoutineScreen extends StatelessWidget {
               ),
               child: Column(
                 children: [
-                  SvgPicture.asset(AppStrings.evening_logoPath),
+                  Image.asset(
+                    AppStrings.afternoon_logoPath,
+                    color: AppColors.kprimaryColor,
+                    width: MediaQuery.of(context).size.width / 4,
+                  ),
                   const ReuseableGapWidget(),
-                  Text('"Evening Relaxation and Unwind"',
+                  Text('"Afternoon Energy Recharge"',
                       textAlign: TextAlign.center,
                       style: AppStyles.headingTextStyleBlack),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      'Build a personalized evening routine to unwind and relax. Add activities that bring calmness and tranquility.',
+                      'Elevate your energy levels with a curated afternoon routine designed to revitalize your mind and body.',
                       style: AppStyles.taskSubtitleTextStyleblackcolor,
                     ),
                   )
@@ -68,19 +73,19 @@ class CreateFixedEveningRoutineScreen extends StatelessWidget {
               child: ListView(
             children: [
               const ReUseAbleTaskContainer(
-                title: 'Dinner (Eat healthy food in the Evening)',
-                subTitle: '8:00 PM',
+                title: 'Lunch (Eat healthy food in the afternoon)',
+                subTitle: '1:00 PM',
                 svgPath: AppStrings.lunchSvgPath,
               ),
               const ReUseAbleTaskContainer(
-                title: 'Hydration (Drink more water)',
-                subTitle: '8:30 PM',
-                svgPath: AppStrings.hydrationSvgPath,
+                title: 'Short Walk (Maintain a Healthy Body)',
+                subTitle: '1:30 PM',
+                svgPath: AppStrings.shortwalkSvgPath,
               ),
               const ReUseAbleTaskContainer(
-                title: 'Relaxation (Mind Refreshing)',
-                subTitle: '8:45 PM',
-                svgPath: AppStrings.meditationSvgPath,
+                title: 'Hydration (Drink more water)',
+                subTitle: '2:00 PM',
+                svgPath: AppStrings.hydrationSvgPath,
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -88,10 +93,10 @@ class CreateFixedEveningRoutineScreen extends StatelessWidget {
                   onTap: () async {
                     RoutineController routineController = RoutineController();
                     Routine newRoutine = Routine(
-                        routineName: 'Evening Relaxtion and Unwind',
+                        routineName: 'Afternoon Energy Recharge',
                         routineDescription:
-                            'Enjoy a personalized afternoon routine that contributes to your rejuvenation and focus.',
-                        selectedOption: 'Evening',
+                            'Elevate your energy levels with a curated afternoon routine designed to revitalize your mind and body.',
+                        selectedOption: 'Afternoon',
                         isSwitchOn: true,
                         selectedDays: [
                           "monday",
@@ -105,16 +110,16 @@ class CreateFixedEveningRoutineScreen extends StatelessWidget {
                         todos: <Todo>[
                           Todo(
                             todoName:
-                                'Dinner (Eat healthy food in the Evening)',
-                            time: getFutureDateTime(20, 0),
+                                'Lunch (Eat healthy food in the afternoon)',
+                            time: getFutureDateTime(13, 0),
+                          ),
+                          Todo(
+                            todoName: 'Short Walk (Maintain a Healthy Body)',
+                            time: getFutureDateTime(13, 30),
                           ),
                           Todo(
                             todoName: 'Hydration (Drink more water)',
-                            time: getFutureDateTime(20, 30),
-                          ),
-                          Todo(
-                            todoName: 'Relaxation (Mind Refreshing)',
-                            time: getFutureDateTime(20, 45),
+                            time: getFutureDateTime(14, 0),
                           ),
                         ],
                         routineType: 'fixed');
